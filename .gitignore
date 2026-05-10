@@ -1,10 +1,13 @@
 schedule_result.csv
+people_prediction.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
 *$py.class
 
+.idea/**
+.idea
 # C extensions
 *.so
 

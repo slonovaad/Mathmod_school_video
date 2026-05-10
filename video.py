@@ -3,11 +3,12 @@ import sys
 from collections import defaultdict
 
 WIDTH, HEIGHT = 1000, 500
-FPS = 4
+FPS = 2
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 STATIONS = ['BVR', 'C', 'FF', 'K', 'TS']
+STATION_NAMES = {'BVR': 'Напитки', 'C': 'Прилавок', 'FF': 'Картофель', 'K': 'Кухня', 'TS': 'Зал'}
 ZONE_WIDTH = (WIDTH - 20 * (len(STATIONS) + 1)) // len(STATIONS)
 ZONE_HEIGHT = (HEIGHT - 150)
 
@@ -31,7 +32,7 @@ def draw_zones(screen, font):
     for i, zone in enumerate(STATIONS):
         pygame.draw.rect(screen, BLACK, (20 + (ZONE_WIDTH + 20) * i, 100, ZONE_WIDTH, ZONE_HEIGHT), 1)
 
-        text_surface = font.render(zone, True, BLACK)
+        text_surface = font.render(f"{zone} ({STATION_NAMES[zone]})", True, BLACK)
         text_rect = text_surface.get_rect()
         text_rect.left = 20 + (ZONE_WIDTH + 20) * i
         text_rect.top = 70
@@ -46,7 +47,7 @@ def draw_employees(screen, font, current_employees):
             text_surface = font.render(employee, True, BLACK)
             text_rect = text_surface.get_rect()
             text_rect.left = 10 + zone_left + 50 * (employee_count % 3)
-            text_rect.top = 110 + 100 * (employee_count // 3)
+            text_rect.top = 110 + 50 * (employee_count // 3)
             screen.blit(text_surface, text_rect)
             employee_count += 1
 
